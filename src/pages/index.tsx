@@ -1,3 +1,4 @@
+import { Flex } from "@chakra-ui/react"
 export default function Home() {
-  return <h1>Hello World!</h1>
+  return <h1>Almost before we knew it</h1>
 }
