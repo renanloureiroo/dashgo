@@ -1,13 +1,14 @@
-import { Icon, Text, Link } from "@chakra-ui/react"
+import { Icon, Text, Link, LinkProps } from "@chakra-ui/react"
+import { ElementType } from "react"
 
-interface NavLinkProps {
+interface NavLinkProps extends LinkProps {
   title: string
-  icon: any
+  icon: ElementType
 }
 
-export const NavLink = ({ title, icon }: NavLinkProps) => {
+export const NavLink = ({ title, icon, ...rest }: NavLinkProps) => {
   return (
-    <Link display="flex" alignItems="center">
+    <Link {...rest} display="flex" alignItems="center">
       <Icon as={icon} fontSize="20" />
       <Text ml="4" fontWeight="medium">
         {title}
