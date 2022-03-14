@@ -1,6 +1,5 @@
-import { Flex, Input, Text, Icon, HStack } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 
-import { RiNotificationLine, RiSearchLine, RiUserAddLine } from "react-icons/ri"
 import { Logo } from "./Header/Logo"
 import { Notifications } from "./Header/Notifications"
 import { Profile } from "./Header/Profile"
