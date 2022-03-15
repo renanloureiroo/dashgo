@@ -9,12 +9,18 @@ import {
   VStack,
 } from "@chakra-ui/react"
 import Link from "next/link"
+import { useForm } from "react-hook-form"
 import { Input } from "../../components/Form/Input"
 import { Header } from "../../components/Header"
 
 import { Sidebar } from "../../components/Sidebar"
 
 const CreateUser = () => {
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm()
   return (
     <Box>
       <Header />
