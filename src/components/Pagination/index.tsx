@@ -57,7 +57,7 @@ const Pagination = ({
       <Stack direction="row" spacing="2">
         {currentPage > 1 + siblingsCount && (
           <>
-            <PaginationItem number={1} />
+            <PaginationItem onPageChange={onPageChange} number={1} />
             {currentPage > 2 + siblingsCount && (
               <Text color="gray.300" w={8} textAlign="center">
                 ...
@@ -68,13 +68,27 @@ const Pagination = ({
 
         {previousPages.length > 0 &&
           previousPages.map((page) => (
-            <PaginationItem key={page} number={page} />
+            <PaginationItem
+              onPageChange={onPageChange}
+              key={page}
+              number={page}
+            />
           ))}
 
-        <PaginationItem isCurrent number={currentPage} />
+        <PaginationItem
+          onPageChange={onPageChange}
+          isCurrent
+          number={currentPage}
+        />
 
         {nextPages.length > 0 &&
-          nextPages.map((page) => <PaginationItem key={page} number={page} />)}
+          nextPages.map((page) => (
+            <PaginationItem
+              onPageChange={onPageChange}
+              key={page}
+              number={page}
+            />
+          ))}
 
         {currentPage + siblingsCount < lastPage && (
           <>
@@ -83,7 +97,7 @@ const Pagination = ({
                 ...
               </Text>
             )}
-            <PaginationItem number={lastPage} />
+            <PaginationItem onPageChange={onPageChange} number={lastPage} />
           </>
         )}
       </Stack>
