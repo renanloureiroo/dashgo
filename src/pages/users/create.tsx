@@ -9,6 +9,7 @@ import {
   VStack,
 } from "@chakra-ui/react"
 import Link from "next/link"
+import router from "next/router"
 import { SubmitHandler, useForm } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -16,6 +17,9 @@ import { Input } from "../../components/Form/Input"
 import { Header } from "../../components/Header"
 
 import { Sidebar } from "../../components/Sidebar"
+import { useMutation } from "react-query"
+import { api } from "../../services/api"
+import { queryCliente } from "../../services/queryClient"
 
 type CreateUserFormData = {
   name: string
@@ -43,8 +47,27 @@ const CreateUser = () => {
     resolver: yupResolver(schema),
   })
 
-  const handleCrateUser: SubmitHandler<CreateUserFormData> = (values) => {
-    console.log(values)
+  const createUser = useMutation(
+    async (user: CreateUserFormData) => {
+      const response = await api.post("/users", {
+        user: {
+          ...user,
+          created_at: new Date(),
+        },
+      })
+
+      return response.data.user
+    },
+    {
+      onSuccess: () => {
+        queryCliente.invalidateQueries("users")
+        router.push("/users")
+      },
+    }
+  )
+
+  const handleCrateUser: SubmitHandler<CreateUserFormData> = async (values) => {
+    await createUser.mutateAsync(values)
   }
   return (
     <Box>

@@ -16,6 +16,7 @@ import {
   Tr,
   useBreakpointValue,
 } from "@chakra-ui/react"
+import { GetServerSideProps } from "next"
 
 import NextLink from "next/link"
 import { useState } from "react"
@@ -27,7 +28,7 @@ import Pagination from "../../components/Pagination"
 import { Sidebar } from "../../components/Sidebar"
 import { api } from "../../services/api"
 
-import { useUsers } from "../../services/hooks/useUsers"
+import { getUsers, useUsers } from "../../services/hooks/useUsers"
 import { queryCliente } from "../../services/queryClient"
 
 const UsersList = () => {
@@ -156,5 +157,15 @@ const UsersList = () => {
     </Box>
   )
 }
+
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const { users, totalCount } = await getUsers(1)
+
+//   return {
+//     props: {
+//       users,
+//     },
+//   }
+// }
 
 export default UsersList
